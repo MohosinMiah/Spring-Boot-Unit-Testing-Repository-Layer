@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.testrepositorylayer.test_repositoryt_layer.entity.Employee;
@@ -15,4 +16,13 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long>{
     // Define custom query using JPQL with index params
     @Query("select e from Employee e where e.firstName = ?1 and e.lastName = ?2")
     Employee findByJPQL(String firstName, String lastName);
+    
+    // Define custom query using JPQL with name params
+    @Query("select e from Employee e where e.firstName = :firstName and e.lastName = :lastName")
+    // Employee findByJPQLNameParams(String firstName, String lastName);  // This is also works fine because params name and parameter name is sanme
+    Employee findByJPQLNameParams(@Param("firstName") String firstName, @Param("lastName") String lastName);
+
+
 }
+
+

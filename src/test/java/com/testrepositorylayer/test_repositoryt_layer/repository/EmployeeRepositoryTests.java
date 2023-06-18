@@ -192,12 +192,31 @@ public class EmployeeRepositoryTests {
 
         // When: Action or behavior that we are going to test
         Employee getEmployee =   employeeRepository.findByJPQL(employee.getFirstName(), employee.getLastName());
-        
+
         // Then: Verify the output or expected result
         assertThat(getEmployee).isNotNull();
     }
 
+    // JUnit test for custom query using JPQL with name param 
+    @Test
+    @DisplayName("JUnit test for custom query using JPQL with name param ")
+    public void givenFirstNameAndLastName_whenFindByJPQLNameParams_thenReturnEmployeeObject() {
 
+        // Given: Setup object or precondition
+        Employee employee = Employee.builder()
+                .firstName("MOHOSIN One")
+                .lastName("MIAH One")
+                .email("mohosinmiah1610@gmail.com")
+                .departmentCode("CSE")
+                .build();
+        employeeRepository.save(employee);
+
+        // When: Action or behavior that we are going to test
+        Employee getEmployee =   employeeRepository.findByJPQLNameParams(employee.getFirstName(), employee.getLastName());
+        
+        // Then: Verify the output or expected result
+        assertThat(getEmployee).isNotNull();
+    }
 
 
 }
