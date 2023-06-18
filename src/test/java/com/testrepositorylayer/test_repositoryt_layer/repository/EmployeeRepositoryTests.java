@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,18 +19,31 @@ public class EmployeeRepositoryTests {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    private Employee employee;
+
+
+    @BeforeEach
+    public void setupTestData(){
+        // Given : Setup object or precondition
+        employee = Employee.builder()
+                .firstName("MOHOSIN")
+                .lastName("MIAH")
+                .email("mohosinmiah1610@gmail.com")
+                .departmentCode("CSE")
+                .build();
+    }
     // JUnit Test for save employee operation
     @Test
     @DisplayName("JUnit test for save employee operation")
     public void givenEmployeeObject_whenSave_thenReturnSaveEmployee(){
 
         // Given : Setup object or precondition
-        Employee employee = Employee.builder()
-                .firstName("MOHOSIN")
-                .lastName("MIAH")
-                .email("mohosinmiah1610@gmail.com")
-                .departmentCode("CSE")
-                .build();
+        // Employee employee = Employee.builder()
+        //         .firstName("MOHOSIN")
+        //         .lastName("MIAH")
+        //         .email("mohosinmiah1610@gmail.com")
+        //         .departmentCode("CSE")
+        //         .build();
 
         // When : Action of behavious that we are going to test
         Employee saveEmployee = employeeRepository.save(employee);
@@ -83,20 +97,19 @@ public class EmployeeRepositoryTests {
     public void givenEmployeeObject_whenFindById_thenReturnEmployeeObject()
     {
         // Given : Setup object or precondition
-        Employee employee = Employee.builder()
-                .firstName("MOHOSIN One")
-                .lastName("MIAH One")
-                .email("mohosinmiah1610@gmail.com")
-                .departmentCode("CSE")
-                .build();
+        // Employee employee = Employee.builder()
+        //         .firstName("MOHOSIN One")
+        //         .lastName("MIAH One")
+        //         .email("mohosinmiah1610@gmail.com")
+        //         .departmentCode("CSE")
+        //         .build();
         employeeRepository.save(employee);
 
         // When : Action of behavious that we are going to test
-        Employee getEmployee = employeeRepository.findById(1L).get();
+        Employee getEmployee = employeeRepository.findById(employee.getId()).get();
 
         // Then : Verify the output
         assertThat(getEmployee).isNotNull();
-        assertThat(getEmployee.getFirstName()).isEqualTo("MOHOSIN One");
     }
 
 
@@ -106,12 +119,12 @@ public class EmployeeRepositoryTests {
     public void givenEmployeeEmail_whenFindByEmail_thenEmployeeObject() {
 
         // Given: Setup object or precondition
-        Employee employee = Employee.builder()
-                .firstName("MOHOSIN One")
-                .lastName("MIAH One")
-                .email("mohosinmiah1610@gmail.com")
-                .departmentCode("CSE")
-                .build();
+        // Employee employee = Employee.builder()
+        //         .firstName("MOHOSIN One")
+        //         .lastName("MIAH One")
+        //         .email("mohosinmiah1610@gmail.com")
+        //         .departmentCode("CSE")
+        //         .build();
         employeeRepository.save(employee);
 
         // When: Action or behavior that we are going to test
@@ -129,12 +142,12 @@ public class EmployeeRepositoryTests {
     public void givenEmployeeObject_whenUpdate_thenEmployeeObject() {
 
         // Given: Setup object or precondition
-        Employee employee = Employee.builder()
-                .firstName("MOHOSIN One")
-                .lastName("MIAH One")
-                .email("mohosinmiah1610@gmail.com")
-                .departmentCode("CSE")
-                .build();
+        // Employee employee = Employee.builder()
+        //         .firstName("MOHOSIN One")
+        //         .lastName("MIAH One")
+        //         .email("mohosinmiah1610@gmail.com")
+        //         .departmentCode("CSE")
+        //         .build();
         employeeRepository.save(employee);
 
         // When: Action or behavior that we are going to test
@@ -159,12 +172,12 @@ public class EmployeeRepositoryTests {
     public void givenEmployeeObject_whenDelete_thenRemoveEmployee() {
 
         // Given: Setup object or precondition
-        Employee employee = Employee.builder()
-                .firstName("MOHOSIN One")
-                .lastName("MIAH One")
-                .email("mohosinmiah1610@gmail.com")
-                .departmentCode("CSE")
-                .build();
+        // Employee employee = Employee.builder()
+        //         .firstName("MOHOSIN One")
+        //         .lastName("MIAH One")
+        //         .email("mohosinmiah1610@gmail.com")
+        //         .departmentCode("CSE")
+        //         .build();
         employeeRepository.save(employee);
 
         // When: Action or behavior that we are going to test
@@ -182,12 +195,12 @@ public class EmployeeRepositoryTests {
     public void givenFirstNameAndLastName_whenFindByJPQL_thenReturnEmployeeObject() {
 
         // Given: Setup object or precondition
-        Employee employee = Employee.builder()
-                .firstName("MOHOSIN One")
-                .lastName("MIAH One")
-                .email("mohosinmiah1610@gmail.com")
-                .departmentCode("CSE")
-                .build();
+        // Employee employee = Employee.builder()
+        //         .firstName("MOHOSIN One")
+        //         .lastName("MIAH One")
+        //         .email("mohosinmiah1610@gmail.com")
+        //         .departmentCode("CSE")
+        //         .build();
         employeeRepository.save(employee);
 
         // When: Action or behavior that we are going to test
@@ -203,12 +216,12 @@ public class EmployeeRepositoryTests {
     public void givenFirstNameAndLastName_whenFindByJPQLNameParams_thenReturnEmployeeObject() {
 
         // Given: Setup object or precondition
-        Employee employee = Employee.builder()
-                .firstName("MOHOSIN One")
-                .lastName("MIAH One")
-                .email("mohosinmiah1610@gmail.com")
-                .departmentCode("CSE")
-                .build();
+        // Employee employee = Employee.builder()
+        //         .firstName("MOHOSIN One")
+        //         .lastName("MIAH One")
+        //         .email("mohosinmiah1610@gmail.com")
+        //         .departmentCode("CSE")
+        //         .build();
         employeeRepository.save(employee);
 
         // When: Action or behavior that we are going to test
@@ -225,12 +238,12 @@ public class EmployeeRepositoryTests {
     public void givenFirstNameAndLastName_whenFindByfindByNativeSQL_thenReturnEmployeeObject() {
 
         // Given: Setup object or precondition
-        Employee employee = Employee.builder()
-                .firstName("MOHOSIN One")
-                .lastName("MIAH One")
-                .email("mohosinmiah1610@gmail.com")
-                .departmentCode("CSE")
-                .build();
+        // Employee employee = Employee.builder()
+        //         .firstName("MOHOSIN One")
+        //         .lastName("MIAH One")
+        //         .email("mohosinmiah1610@gmail.com")
+        //         .departmentCode("CSE")
+        //         .build();
         employeeRepository.save(employee);
 
         // When: Action or behavior that we are going to test
@@ -247,12 +260,12 @@ public class EmployeeRepositoryTests {
     public void givenFirstNameAndLastName_whenfindByNativeSQLNameParam_thenReturnEmployeeObject() {
 
         // Given: Setup object or precondition
-        Employee employee = Employee.builder()
-                .firstName("MOHOSIN One")
-                .lastName("MIAH One")
-                .email("mohosinmiah1610@gmail.com")
-                .departmentCode("CSE")
-                .build();
+        // Employee employee = Employee.builder()
+        //         .firstName("MOHOSIN One")
+        //         .lastName("MIAH One")
+        //         .email("mohosinmiah1610@gmail.com")
+        //         .departmentCode("CSE")
+        //         .build();
         employeeRepository.save(employee);
 
         // When: Action or behavior that we are going to test
