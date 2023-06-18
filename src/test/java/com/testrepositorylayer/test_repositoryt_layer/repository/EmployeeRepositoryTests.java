@@ -45,7 +45,7 @@ public class EmployeeRepositoryTests {
 
     }
 
-    // JUnit test for get Employee List
+    // JUnit test for get Employee List operation
     @Test
     @DisplayName("JUnit test for get Employee List")
     public void givenEmployeeList_whenFindAll_thenEmployeeList(){
@@ -76,7 +76,7 @@ public class EmployeeRepositoryTests {
         assertThat(employees.size()).isEqualTo(2);
     }
 
-    // JUnit test for get Employee By Id
+    // JUnit test for get Employee By Id operation
     
     @Test
     @DisplayName("JUnit test for get Employee By Id")
@@ -91,7 +91,6 @@ public class EmployeeRepositoryTests {
                 .build();
         employeeRepository.save(employee);
 
-
         // When : Action of behavious that we are going to test
         Employee getEmployee = employeeRepository.findById(1L).get();
 
@@ -100,24 +99,31 @@ public class EmployeeRepositoryTests {
         assertThat(getEmployee.getFirstName()).isEqualTo("MOHOSIN One");
     }
 
+
+    // JUnit test for get employee by email operation
+    @Test
+    @DisplayName("JUnit test for get employee by email operation")
+    public void givenEmployeeEmail_whenFindByEmail_thenEmployeeObject() {
+
+        // Given: Setup object or precondition
+        Employee employee = Employee.builder()
+                .firstName("MOHOSIN One")
+                .lastName("MIAH One")
+                .email("mohosinmiah1610@gmail.com")
+                .departmentCode("CSE")
+                .build();
+        employeeRepository.save(employee);
+
+        // When: Action or behavior that we are going to test
+        Employee getEmployee = employeeRepository.findByEmail("mohosinmiah1610@gmail.com").get();
+
+        // Then: Verify the output or expected result
+        assertThat(getEmployee).isNotNull();
+        assertThat(getEmployee.getEmail()).isEqualTo("mohosinmiah1610@gmail.com");
+    }
+
+
 }
-
-
-@Test
-public void given_when_then() {
-    // Given: Setup object or precondition
-    
-    // When: Action or behavior that we are going to test
-    
-    // Then: Verify the output or expected result
-}
-
-
-## Annotaion details
-
-# @DataJpaTest
-The @DataJpaTest annotation in Spring Boot is used for integration testing of JPA repositories. It provides a convenient way to test the persistence layer of your application by automatically configuring an in-memory database, creating a TestEntityManager, and setting up a transactional test environment.
-It will only load Repository layer.
 
 
 
