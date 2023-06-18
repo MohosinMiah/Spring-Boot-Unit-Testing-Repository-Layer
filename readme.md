@@ -1,18 +1,19 @@
 ## Spring-Boot---Unit-Testing-Repository-Layer
 
-## Given_When_Then - Naming convention for writing method name
-`
+### Test Case Structure
+
+When writing test cases, we follow the <b>given-when-then </b> structure to provide clear and concise test descriptions. Here's an example:
+
+```java
 @Test
-public void given_when_then()
-{
-    // Given : Setup object or precondition
-
-    // When : Action of behavious that we are going to test
-
-    // Then : Verify the output
+public void given_when_then() {
+    // Given: Setup object or precondition
+    
+    // When: Action or behavior that we are going to test
+    
+    // Then: Verify the output or expected result
 }
 
-`
 
 ## Annotaion details
 
