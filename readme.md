@@ -2,6 +2,7 @@
 
 ## Given_When_Then - Naming convention for writing method name
 `
+@Test
 public void given_when_then()
 {
     // Given : Setup object or precondition
