@@ -3,6 +3,7 @@ package com.testrepositorylayer.test_repositoryt_layer.repository;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -46,6 +47,7 @@ public class EmployeeRepositoryTests {
 
     // JUnit test for get Employee List
     @Test
+    @DisplayName("JUnit test for get Employee List")
     public void givenEmployeeList_whenFindAll_thenEmployeeList(){
 
         // Given : Setup object or precondition
@@ -74,7 +76,28 @@ public class EmployeeRepositoryTests {
         assertThat(employees.size()).isEqualTo(2);
     }
 
+    // JUnit test for get Employee By Id
+    
+    @Test
+    @DisplayName("JUnit test for get Employee By Id")
+    public void givenEmployeeObject_whenFindById_thenReturnEmployeeObject()
+    {
+        // Given : Setup object or precondition
+        Employee employee = Employee.builder()
+                .firstName("MOHOSIN One")
+                .lastName("MIAH One")
+                .email("mohosinmiah1610@gmail.com")
+                .departmentCode("CSE")
+                .build();
+        employeeRepository.save(employee);
 
 
+        // When : Action of behavious that we are going to test
+        Employee getEmployee = employeeRepository.findById(1L).get();
+
+        // Then : Verify the output
+        assertThat(getEmployee).isNotNull();
+        assertThat(getEmployee.getFirstName()).isEqualTo("MOHOSIN One");
+    }
 
 }
