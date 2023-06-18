@@ -1,7 +1,8 @@
 ## Spring-Boot---Unit-Testing-Repository-Layer
 
 ## Given_When_Then - Naming convention for writing method name
-`public void given_when_then()
+`
+public void given_when_then()
 {
     // Given : Setup object or precondition
 
@@ -9,6 +10,7 @@
 
     // Then : Verify the output
 }
+
 `
 
 ## Annotaion details

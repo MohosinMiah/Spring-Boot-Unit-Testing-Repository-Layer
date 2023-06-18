@@ -1,6 +1,6 @@
 package com.testrepositorylayer.test_repositoryt_layer.repository;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +30,14 @@ public class EmployeeRepositoryTests {
         Employee saveEmployee = employeeRepository.save(employee);
 
         // Then : Verify the output
-        Assertions.assertThat(saveEmployee).isNotNull();
-        Assertions.assertThat(saveEmployee.getId()).isGreaterThan(0);
+        // Assertions.assertThat(saveEmployee).isNotNull();
+        // Assertions.assertThat(saveEmployee.getId()).isGreaterThan(0);
+
+        // Statically import call method . Like import static org.assertj.core.api.Assertions.assertThat; Sp that we can use method directly
+
+        assertThat(saveEmployee).isNotNull();
+        assertThat(saveEmployee.getId()).isGreaterThan(0);
+
     }
 
 }
