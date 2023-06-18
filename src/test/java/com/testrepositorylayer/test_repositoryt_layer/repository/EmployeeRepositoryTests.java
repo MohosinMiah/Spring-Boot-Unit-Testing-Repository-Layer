@@ -153,6 +153,29 @@ public class EmployeeRepositoryTests {
     }
 
 
+    // JUnit test for delete employee operation
+    @Test
+    @DisplayName("JUnit test for delete employee operation")
+    public void givenEmployeeObject_whenDelete_thenRemoveEmployee() {
+
+        // Given: Setup object or precondition
+        Employee employee = Employee.builder()
+                .firstName("MOHOSIN One")
+                .lastName("MIAH One")
+                .email("mohosinmiah1610@gmail.com")
+                .departmentCode("CSE")
+                .build();
+        employeeRepository.save(employee);
+
+        // When: Action or behavior that we are going to test
+        employeeRepository.deleteById(employee.getId());
+        Optional<Employee> deleteEmployee = employeeRepository.findById(employee.getId());
+
+        // Then: Verify the output or expected result
+        assertThat(deleteEmployee).isEmpty();
+    }
+
+
 }
 
 
